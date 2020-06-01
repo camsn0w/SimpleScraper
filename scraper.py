@@ -16,6 +16,8 @@ def scrape(link):
     rawHtml = requests.get(link).content
     soup = BeautifulSoup(rawHtml, 'html.parser')
     spans = soup.find_all('span', {'class': 'price'})
+    if len(spans) == 0:
+        return "Not found"
     return list(spans[0])[0]
 
 def findPrices(links):
